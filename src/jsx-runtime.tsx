@@ -1,10 +1,7 @@
-import ReactJSXRuntime from "react/jsx-runtime";
 import React, {createContext, FC, useContext, ReactElement} from "react";
+import {config} from "./config";
 
-export const Fragment = ReactJSXRuntime.Fragment;
-
-const TESTID_ROOT = "testid-root";
-const TESTID_KEY = "data-testid";
+const {ReactJSXRuntime, TESTID_KEY, TESTID_ROOT} = config();
 
 const combineIds = (ids: Array<string | undefined> = []) => ids.filter((v) => !!v).join(".");
 
@@ -16,8 +13,8 @@ interface ConsumerProps {
   children?: ReactElement;
   role?: string;
   name?: string;
-  [TESTID_KEY]?: string;
-  [TESTID_ROOT]: string
+
+  [key: string]: any;
 }
 
 const ConsumeTestid: FC<ConsumerProps> = ({children, ...otherProps}) => {
