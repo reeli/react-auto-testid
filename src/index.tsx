@@ -3,12 +3,13 @@ import { Foo } from "./Foo";
 
 const App = () => {
   return (
-    <div>
+    <div testid-root={"root1"}>
       app
-      <Foo testid-root={"parent"} />
+      <div testid-root={"root2"}>
+        <Foo/>
+      </div>
     </div>
   );
 };
 
-// @ts-ignore
 render(<App />, document.getElementById("app"));
