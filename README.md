@@ -4,7 +4,7 @@
 
 ```json
 {
-  "presets": ["react-auto-testid"]
+  "presets": ["react-auto-testid/babel-preset"]
 }
 ```
 

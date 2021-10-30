@@ -37,9 +37,9 @@ module.exports = [
     ...common,
   },
   {
-    input: ["src/babel-preset/react-auto-testid.ts"],
+    input: ["src/babel-preset/index.ts"],
     output: {
-      file: "babel-preset/react-auto-testid.js",
+      file: "babel-preset/index.js",
       format: "cjs",
     },
     ...common,
