@@ -6,15 +6,9 @@ const pkg = require(path.join(__dirname, "package.json"));
 
 module.exports = {
   input: "src/jsx-runtime.tsx",
-  output: [
-    {
-      file: pkg.main,
-      format: "cjs",
-    },
-    {
-      file: pkg.module,
-      format: "es",
-    },
-  ],
+  output: {
+    file: pkg.main,
+    format: "cjs",
+  },
   plugins: [rollupTypeScript()],
 };

@@ -31,17 +31,16 @@
   },
   "scripts": {
     "start": "webpack serve --config webpack.config.ts",
-    "release": "rm -rf dist/ && rollup --config rollup.config.ts",
+    "release": "rm -rf jsx-runtime.js && rollup --config rollup.config.ts",
     "test": "jest",
     "dev": "vite serve",
     "build": "vite build",
     "serve": "vite preview"
   },
-  "main": "dist/lib/jsx-runtime.js",
-  "module": "dist/es/jsx-runtime.js",
+  "main": "jsx-runtime.js",
   "files": [
     "src",
-    "dist",
+    "jsx-runtime.js",
     "package.json",
     "README.md"
   ]

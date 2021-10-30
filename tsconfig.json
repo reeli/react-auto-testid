@@ -2,8 +2,8 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
-    "moduleResolution": "node",
     "jsx": "react-jsx",
+    "moduleResolution": "node",
     "strict": true,
     "alwaysStrict": true,
     "pretty": true,
@@ -11,14 +11,13 @@
     "noUnusedParameters": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "outDir": ".output",
     "baseUrl": ".",
-    "outDir": ".tmp",
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
+    "rootDir": ".",
+    "resolveJsonModule": true,
     "paths": {
-      "*": ["*", "types/*"] // * -> *  表示先找文件自身对应的 types，如果找不到然后再去 types/* 下面找
+      "*": ["*", "__types__/*"]
     },
-    "jsxImportSource": "@emotion/react"
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/__tests__/**"]
 }
