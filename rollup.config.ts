@@ -29,17 +29,17 @@ const common = {
 
 module.exports = [
   {
-    input: ["src/jsx-runtime.tsx"],
+    input: ["src/jsx-runtime/jsx-runtime.tsx"],
     output: {
-      file: "jsx-runtime.js",
+      file: "jsx-runtime/jsx-runtime.js",
       format: "cjs",
     },
     ...common,
   },
   {
-    input: ["src/babel-preset-react-auto-testid/index.ts"],
+    input: ["src/babel-preset/react-auto-testid.ts"],
     output: {
-      file: "babel-preset-react-auto-testid.js",
+      file: "babel-preset/react-auto-testid.js",
       format: "cjs",
     },
     ...common,

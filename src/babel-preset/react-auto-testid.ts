@@ -5,7 +5,7 @@ module.exports = function() {
         "@babel/plugin-transform-react-jsx",
         {
           "runtime": "automatic",
-          "importSource": "react-auto-testid"
+          "importSource": "react-auto-testid/jsx-runtime"
         }
       ],
     ],

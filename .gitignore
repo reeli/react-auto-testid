@@ -7,3 +7,7 @@ public
 coverage/
 .tmp
 dist/
+babel-preset/
+jsx-runtime/
+!src/babel-preset/
+!src/jsx-runtime
