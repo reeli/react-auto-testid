@@ -22,19 +22,22 @@ const ConsumeTestid: FC<{ children?: ReactElement; role?: string; name?: string;
     return null;
   }
 
-  const id = combineIds([name, otherProps?.name || otherProps?.role]);
+  const nameOrRole = otherProps?.name || otherProps?.role;
+  const testidOrNameOrRole = otherProps[TESTID_ROOT] || nameOrRole;
+  const id = combineIds([name, nameOrRole]);
+  const propsToChildren = id ? { ...otherProps, [TESTID_KEY]: id } : otherProps;
 
-  if (otherProps[TESTID_ROOT] || otherProps?.name || otherProps?.role) {
-    const newName = combineIds([name, otherProps[TESTID_ROOT] || otherProps?.name || otherProps?.role]);
+  if (testidOrNameOrRole) {
+    const newName = combineIds([name, testidOrNameOrRole]);
 
     return (
       <TestidContext.Provider value={{ name: newName }}>
-        {React.cloneElement(children, id ? { ...otherProps, [TESTID_KEY]: id } : otherProps)}
+        {React.cloneElement(children, propsToChildren)}
       </TestidContext.Provider>
     );
   }
 
-  return React.cloneElement(children, id ? { ...otherProps, [TESTID_KEY]: id } : otherProps);
+  return React.cloneElement(children, propsToChildren);
 };
 
 export const jsx = (...args: Parameters<typeof ReactJSXRuntime.jsx>) => {
