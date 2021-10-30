@@ -108,4 +108,15 @@ describe("custom jsx runtime", () => {
 
     expect(node.getAttribute("data-testid")).toEqual("root.input");
   });
+
+  it("should not override if test id already existed", async () => {
+    const { findByPlaceholderText } = render(
+      <div testid-root={"root"}>
+        <input role={"input"} placeholder={"input-placeholder"} data-testid={"my-input"}/>
+      </div>,
+    );
+    const node = await findByPlaceholderText("input-placeholder");
+
+    expect(node.getAttribute("data-testid")).toEqual("my-input");
+  });
 });

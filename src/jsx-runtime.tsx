@@ -1,5 +1,5 @@
 import ReactJSXRuntime from "react/jsx-runtime";
-import React, { createContext, FC, useContext, ReactElement } from "react";
+import React, {createContext, FC, useContext, ReactElement} from "react";
 
 export const Fragment = ReactJSXRuntime.Fragment;
 
@@ -12,11 +12,16 @@ const TestidContext = createContext({
   name: "",
 });
 
-const ConsumeTestid: FC<{ children?: ReactElement; role?: string; name?: string; [TESTID_ROOT]: string }> = ({
-  children,
-  ...otherProps
-}) => {
-  const { name } = useContext(TestidContext);
+interface ConsumerProps {
+  children?: ReactElement;
+  role?: string;
+  name?: string;
+  [TESTID_KEY]?: string;
+  [TESTID_ROOT]: string
+}
+
+const ConsumeTestid: FC<ConsumerProps> = ({children, ...otherProps}) => {
+  const {name} = useContext(TestidContext);
 
   if (!children) {
     return null;
@@ -25,13 +30,13 @@ const ConsumeTestid: FC<{ children?: ReactElement; role?: string; name?: string;
   const nameOrRole = otherProps?.name || otherProps?.role;
   const testidOrNameOrRole = otherProps[TESTID_ROOT] || nameOrRole;
   const id = combineIds([name, nameOrRole]);
-  const propsToChildren = id ? { ...otherProps, [TESTID_KEY]: id } : otherProps;
+  const propsToChildren = id && !otherProps[TESTID_KEY] ? {...otherProps, [TESTID_KEY]: id} : otherProps;
 
   if (testidOrNameOrRole) {
     const newName = combineIds([name, testidOrNameOrRole]);
 
     return (
-      <TestidContext.Provider value={{ name: newName }}>
+      <TestidContext.Provider value={{name: newName}}>
         {React.cloneElement(children, propsToChildren)}
       </TestidContext.Provider>
     );
@@ -43,11 +48,11 @@ const ConsumeTestid: FC<{ children?: ReactElement; role?: string; name?: string;
 export const jsx = (...args: Parameters<typeof ReactJSXRuntime.jsx>) => {
   const [type, props, key] = args;
 
-  return ReactJSXRuntime.jsx(ConsumeTestid, { ...props, children: ReactJSXRuntime.jsx(type, props, key) });
+  return ReactJSXRuntime.jsx(ConsumeTestid, {...props, children: ReactJSXRuntime.jsx(type, props, key)});
 };
 
 export const jsxs = (...args: Parameters<typeof ReactJSXRuntime.jsxs>) => {
   const [type, props, key] = args;
 
-  return ReactJSXRuntime.jsx(ConsumeTestid, { ...props, children: ReactJSXRuntime.jsxs(type, props, key) });
+  return ReactJSXRuntime.jsx(ConsumeTestid, {...props, children: ReactJSXRuntime.jsxs(type, props, key)});
 };
