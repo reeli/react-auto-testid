@@ -12,14 +12,10 @@ const TestidContext = createContext({
   name: "",
 });
 
-const ConsumeName: FC<{ children: ReactElement; [TESTID_ROOT]: string }> = ({ children, ...otherProps }) => {
-  const { name } = useContext(TestidContext);
-  const newName = combineIds([name, otherProps[TESTID_ROOT]]);
-
-  return <TestidContext.Provider value={{ name: newName }}>{children}</TestidContext.Provider>;
-};
-
-const ConsumeTestid: FC<{ children?: ReactElement; role?: string; name?: string }> = ({ children, ...otherProps }) => {
+const ConsumeTestid: FC<{ children?: ReactElement; role?: string; name?: string; [TESTID_ROOT]: string }> = ({
+  children,
+  ...otherProps
+}) => {
   const { name } = useContext(TestidContext);
 
   if (!children) {
@@ -27,26 +23,28 @@ const ConsumeTestid: FC<{ children?: ReactElement; role?: string; name?: string 
   }
 
   const id = combineIds([name, otherProps?.name || otherProps?.role]);
+
+  if (otherProps[TESTID_ROOT]) {
+    const newName = combineIds([name, otherProps[TESTID_ROOT]]);
+
+    return (
+      <TestidContext.Provider value={{ name: newName }}>
+        {React.cloneElement(children, id ? { ...otherProps, [TESTID_KEY]: id } : otherProps)}
+      </TestidContext.Provider>
+    );
+  }
+
   return React.cloneElement(children, id ? { ...otherProps, [TESTID_KEY]: id } : otherProps);
 };
 
 export const jsx = (...args: Parameters<typeof ReactJSXRuntime.jsx>) => {
   const [type, props, key] = args;
-  const children = ReactJSXRuntime.jsx(type, props, key);
 
-  if (props[TESTID_ROOT]) {
-    return ReactJSXRuntime.jsx(ConsumeName, { ...props, children });
-  }
-
-  return ReactJSXRuntime.jsx(ConsumeTestid, { ...props, children });
+  return ReactJSXRuntime.jsx(ConsumeTestid, { ...props, children: ReactJSXRuntime.jsx(type, props, key) });
 };
 
 export const jsxs = (...args: Parameters<typeof ReactJSXRuntime.jsxs>) => {
   const [type, props, key] = args;
-  const children = ReactJSXRuntime.jsxs(type, props, key);
 
-  if (props[TESTID_ROOT]) {
-    return ReactJSXRuntime.jsx(ConsumeName, { ...props, children });
-  }
-  return ReactJSXRuntime.jsx(ConsumeTestid, { ...props, children });
+  return ReactJSXRuntime.jsx(ConsumeTestid, { ...props, children: ReactJSXRuntime.jsxs(type, props, key) });
 };

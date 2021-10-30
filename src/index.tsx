@@ -11,7 +11,7 @@ const App = () => {
   return (
     <div testid-root={"root1"}>
       <div testid-root={"root2"}>
-        <div testid-root={"root3"}>
+        <div testid-root={"root3"} role={"hello"}>
           <div role={"text1"}>inside root3</div>
           <input name={"input"} role={"my-input"} type={"text"} />
         </div>

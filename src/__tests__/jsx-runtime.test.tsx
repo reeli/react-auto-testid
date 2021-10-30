@@ -70,4 +70,20 @@ describe("custom jsx runtime", () => {
 
     expect(node).toBeTruthy();
   });
+
+  it("should set test id for testid-root node if it contains role or name property", async () => {
+    const { findByTestId } = render(
+      <div testid-root={"root1"}>
+        <div testid-root={"root2"} role={"text"}>
+          text
+        </div>
+        <input testid-root={"root2"} name={"input"} />
+      </div>,
+    );
+    const textNode = await findByTestId("root1.text");
+    const inputNode = await findByTestId("root1.input");
+
+    expect(textNode).toBeTruthy();
+    expect(inputNode).toBeTruthy();
+  });
 });
