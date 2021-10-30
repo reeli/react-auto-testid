@@ -1,19 +1,9 @@
-import path from "path";
 import { babel } from "@rollup/plugin-babel";
 // @ts-ignore
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 
-const pkg = require(path.join(__dirname, "package.json"));
-
-module.exports = {
-  input: "src/jsx-runtime.tsx",
-  output: {
-    file: pkg.main,
-    format: "cjs",
-  },
-  external:[
-    "react"
-  ],
+const common = {
+  external: ["react"],
   plugins: [
     nodeResolve({
       extensions: [".ts", ".tsx", ".mjs", "", ".jsx"],
@@ -30,9 +20,28 @@ module.exports = {
           },
         ],
         ["@babel/preset-typescript"],
-        "@babel/preset-react"
+        "@babel/preset-react",
       ],
       extensions: [".ts", ".tsx", ".mjs", "", ".jsx"],
     }),
   ],
 };
+
+module.exports = [
+  {
+    input: ["src/jsx-runtime.tsx"],
+    output: {
+      file: "jsx-runtime.js",
+      format: "cjs",
+    },
+    ...common,
+  },
+  {
+    input: ["src/babel-preset-react-auto-testid/index.ts"],
+    output: {
+      file: "babel-preset-react-auto-testid.js",
+      format: "cjs",
+    },
+    ...common,
+  },
+];

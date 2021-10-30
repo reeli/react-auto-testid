@@ -1,4 +1,25 @@
 {
+  "name": "react-auto-testid",
+  "author": "reeli",
+  "version": "1.0.0",
+  "license": "MIT",
+  "bugs": {
+    "url": "git@github.com:reeli/react-auto-testid.git"
+  },
+  "homepage": "git@github.com:reeli/react-auto-testid.git",
+  "main": "babel-preset-react-auto-testid.js",
+  "files": [
+    "src",
+    "jsx-runtime.js",
+    "babel-preset-react-auto-testid.js",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "webpack serve --config webpack.config.ts",
+    "release": "rm -rf *.js && rollup --config rollup.config.ts",
+    "test": "jest"
+  },
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.14.9",
     "@babel/preset-env": "^7.15.8",
@@ -28,17 +49,5 @@
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "lodash": "^4.17.21"
-  },
-  "scripts": {
-    "start": "webpack serve --config webpack.config.ts",
-    "release": "rm -rf jsx-runtime.js && rollup --config rollup.config.ts",
-    "test": "jest"
-  },
-  "main": "jsx-runtime.js",
-  "files": [
-    "src",
-    "jsx-runtime.js",
-    "package.json",
-    "README.md"
-  ]
+  }
 }
