@@ -1,3 +1,5 @@
+import { FunctionComponent, ComponentClass } from "react";
+
 declare module "react/jsx-runtime" {
   import { createElement, ProviderExoticComponent } from "react";
   import { ReactFragment, ReactElement } from "react";
@@ -7,12 +9,20 @@ declare module "react/jsx-runtime" {
     children: T;
   };
 
-  type NodeType = Parameters<typeof createElement>[0] | ProviderExoticComponent<any>;
+  type NodeType<P extends {}> = FunctionComponent<P> | ComponentClass<P> | ProviderExoticComponent<any> | string;
 
   interface ReactJSXRuntime {
     Fragment: ReactFragment;
-    jsx: (type: NodeType, props: PropsObject<ReactElement | ReactElement[]>, key?: string | number) => ReactElement;
-    jsxs: (type: NodeType, props: PropsObject<ReactElement | ReactElement[]>, key?: string | number) => ReactElement[];
+    jsx: <P>(
+      type: NodeType<P>,
+      props: PropsObject<ReactElement | ReactElement[]>,
+      key?: string | number,
+    ) => ReactElement;
+    jsxs: <P>(
+      type: NodeType<P>,
+      props: PropsObject<ReactElement | ReactElement[]>,
+      key?: string | number,
+    ) => ReactElement[];
   }
 
   const ReactJSXRuntime: ReactJSXRuntime;

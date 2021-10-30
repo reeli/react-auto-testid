@@ -6,7 +6,8 @@ const App = () => {
     <div testid-root={"root1"}>
       app
       <div testid-root={"root2"}>
-        <Foo/>
+        <input name={"input"} role={"my-input"} type={"text"} />
+        <Foo />
       </div>
     </div>
   );
