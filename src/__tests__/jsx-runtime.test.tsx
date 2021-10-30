@@ -86,4 +86,26 @@ describe("custom jsx runtime", () => {
     expect(textNode).toBeTruthy();
     expect(inputNode).toBeTruthy();
   });
+
+  it("should set parent role to test id if parent not set testid-root", async () => {
+    const { findByPlaceholderText } = render(
+      <div role={"container"}>
+        <input role={"input"} placeholder={"input-placeholder"} />
+      </div>,
+    );
+    const node = await findByPlaceholderText("input-placeholder");
+
+    expect(node.getAttribute("data-testid")).toEqual("container.input");
+  });
+
+  it("should not set parent role to test id if parent set both role and testid-root", async () => {
+    const { findByPlaceholderText } = render(
+      <div testid-root={"root"} role={"container"}>
+        <input role={"input"} placeholder={"input-placeholder"} />
+      </div>,
+    );
+    const node = await findByPlaceholderText("input-placeholder");
+
+    expect(node.getAttribute("data-testid")).toEqual("root.input");
+  });
 });

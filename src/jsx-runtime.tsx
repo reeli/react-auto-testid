@@ -24,8 +24,8 @@ const ConsumeTestid: FC<{ children?: ReactElement; role?: string; name?: string;
 
   const id = combineIds([name, otherProps?.name || otherProps?.role]);
 
-  if (otherProps[TESTID_ROOT]) {
-    const newName = combineIds([name, otherProps[TESTID_ROOT]]);
+  if (otherProps[TESTID_ROOT] || otherProps?.name || otherProps?.role) {
+    const newName = combineIds([name, otherProps[TESTID_ROOT] || otherProps?.name || otherProps?.role]);
 
     return (
       <TestidContext.Provider value={{ name: newName }}>
