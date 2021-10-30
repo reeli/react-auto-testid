@@ -17,7 +17,9 @@ const App = () => {
         </div>
         <Foo testid-root={"foo-parent"} />
       </div>
-      <div role={"hint"} data-testid={"in app"}>in app</div>
+      <div role={"hint"} data-testid={"in app"}>
+        in app
+      </div>
     </div>
   );
 };

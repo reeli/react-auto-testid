@@ -112,7 +112,7 @@ describe("custom jsx runtime", () => {
   it("should not override if test id already existed", async () => {
     const { findByPlaceholderText } = render(
       <div testid-root={"root"}>
-        <input role={"input"} placeholder={"input-placeholder"} data-testid={"my-input"}/>
+        <input role={"input"} placeholder={"input-placeholder"} data-testid={"my-input"} />
       </div>,
     );
     const node = await findByPlaceholderText("input-placeholder");
