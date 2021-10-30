@@ -1,14 +1,23 @@
 import { render } from "react-dom";
-import { Foo } from "./Foo";
+
+const Foo = () => (
+  <div role={"foo-container"}>
+    <div role={"foo1"}>foo1</div>
+    <div role={"foo2"}>foo2</div>
+  </div>
+);
 
 const App = () => {
   return (
     <div testid-root={"root1"}>
-      app
       <div testid-root={"root2"}>
-        <input name={"input"} role={"my-input"} type={"text"} />
-        <Foo />
+        <div testid-root={"root3"}>
+          <div role={"text1"}>inside root3</div>
+          <input name={"input"} role={"my-input"} type={"text"} />
+        </div>
+        <Foo testid-root={"foo-parent"} />
       </div>
+      <div role={"hint"}>in app</div>
     </div>
   );
 };

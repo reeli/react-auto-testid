@@ -4,7 +4,7 @@ import React, { createContext, FC, useContext, ReactElement } from "react";
 export const Fragment = ReactJSXRuntime.Fragment;
 
 const TESTID_ROOT = "testid-root";
-const TESTID_KEY = "e2e-testid";
+const TESTID_KEY = "data-testid";
 
 const combineIds = (ids: Array<string | undefined> = []) => ids.filter((v) => !!v).join(".");
 
@@ -26,10 +26,8 @@ const ConsumeTestid: FC<{ children?: ReactElement; role?: string; name?: string 
     return null;
   }
 
-  return React.cloneElement(children, {
-    ...otherProps,
-    [TESTID_KEY]: combineIds([name, otherProps?.name || otherProps?.role]),
-  });
+  const id = combineIds([name, otherProps?.name || otherProps?.role]);
+  return React.cloneElement(children, id ? { ...otherProps, [TESTID_KEY]: id } : otherProps);
 };
 
 export const jsx = (...args: Parameters<typeof ReactJSXRuntime.jsx>) => {
@@ -37,10 +35,7 @@ export const jsx = (...args: Parameters<typeof ReactJSXRuntime.jsx>) => {
   const children = ReactJSXRuntime.jsx(type, props, key);
 
   if (props[TESTID_ROOT]) {
-    return ReactJSXRuntime.jsx(ConsumeName, {
-      ...props,
-      children,
-    });
+    return ReactJSXRuntime.jsx(ConsumeName, { ...props, children });
   }
 
   return ReactJSXRuntime.jsx(ConsumeTestid, { ...props, children });
@@ -51,10 +46,7 @@ export const jsxs = (...args: Parameters<typeof ReactJSXRuntime.jsxs>) => {
   const children = ReactJSXRuntime.jsxs(type, props, key);
 
   if (props[TESTID_ROOT]) {
-    return ReactJSXRuntime.jsx(ConsumeName, {
-      ...props,
-      children,
-    });
+    return ReactJSXRuntime.jsx(ConsumeName, { ...props, children });
   }
   return ReactJSXRuntime.jsx(ConsumeTestid, { ...props, children });
 };
