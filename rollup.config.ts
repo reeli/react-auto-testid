@@ -3,6 +3,7 @@ import { babel } from "@rollup/plugin-babel";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import json from "@rollup/plugin-json";
 import path from "path";
+import commonjs from "@rollup/plugin-commonjs";
 
 const pkg = require(path.join(__dirname, "package.json"));
 
@@ -11,7 +12,12 @@ const common = {
   plugins: [
     json(),
     nodeResolve({
+      browser: true,
+      modulesOnly: true,
       extensions: [".ts", ".tsx", ".mjs", "", ".jsx"],
+    }),
+    commonjs({
+      sourceMap: false,
     }),
     babel({
       babelrc: false,
@@ -51,9 +57,9 @@ module.exports = [
     ...common,
   },
   {
-    input: ["src/testid-config/init.ts"],
+    input: ["src/testid-config/cmd.ts"],
     output: {
-      file: "testid-config/init.js",
+      file: "cmd/index.js",
       format: "cjs",
     },
     ...common,

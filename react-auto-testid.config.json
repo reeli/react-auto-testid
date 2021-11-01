@@ -1,0 +1,5 @@
+{
+  "runtime": "react",
+  "testidRoot": "testid-root",
+  "testidKey": "data-testid"
+}

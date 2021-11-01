@@ -12,4 +12,5 @@ jsx-runtime/
 !src/babel-preset/
 !src/jsx-runtime
 !babel.config.js
-!react-auto-testid.config.json
+cmd/
+!bin/cli.js
