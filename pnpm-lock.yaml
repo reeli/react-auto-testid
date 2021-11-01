@@ -20,6 +20,7 @@ specifiers:
   lodash: ^4.17.21
   prettier: ^2.4.1
   react: ^17.0.2
+  react-auto-testid: ^1.2.1
   react-dom: ^17.0.2
   rollup: ^2.58.3
   ts-node: ^10.4.0
@@ -50,6 +51,7 @@ devDependencies:
   jest: 27.3.1_ts-node@10.4.0
   prettier: 2.4.1
   react: 17.0.2
+  react-auto-testid: 1.2.1_74cdfb704b70bfbe5b519e0c4564d995
   react-dom: 17.0.2_react@17.0.2
   rollup: 2.58.3
   ts-node: 10.4.0_typescript@4.4.4
@@ -1416,7 +1418,6 @@ packages:
       '@emotion/utils': 1.0.0
       '@emotion/weak-memoize': 0.2.5
       stylis: 4.0.10
-    dev: false
 
   /@emotion/hash/0.8.0:
     resolution: {integrity: sha512-kBJtf7PH6aWwZ6fka3zQ0p6SBYzx4fl1LoZXE2RrnYST9Xljm7WfKJrU4g/Xr3Beg72MLrp1AWNUmuYJTL7Cow==}
@@ -1445,7 +1446,6 @@ packages:
       '@types/react': 17.0.33
       hoist-non-react-statics: 3.3.2
       react: 17.0.2
-    dev: false
 
   /@emotion/serialize/1.0.2:
     resolution: {integrity: sha512-95MgNJ9+/ajxU7QIAruiOAdYNjxZX7G2mhgrtDWswA21VviYIRP1R5QilZ/bDY42xiKsaktP4egJb3QdYQZi1A==}
@@ -1458,7 +1458,6 @@ packages:
 
   /@emotion/sheet/1.0.3:
     resolution: {integrity: sha512-YoX5GyQ4db7LpbmXHMuc8kebtBGP6nZfRC5Z13OKJMixBEwdZrJ914D6yJv/P+ZH/YY3F5s89NYX2hlZAf3SRQ==}
-    dev: false
 
   /@emotion/unitless/0.7.5:
     resolution: {integrity: sha512-OWORNpfjMsSSUBVrRBVGECkhWcULOAJz9ZW8uK9qgxD+87M7jHRcvh/A96XXNhXTLmKcoYSQtBEX7lHMO7YRwg==}
@@ -1468,7 +1467,6 @@ packages:
 
   /@emotion/weak-memoize/0.2.5:
     resolution: {integrity: sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==}
-    dev: false
 
   /@istanbuljs/load-nyc-config/1.1.0:
     resolution: {integrity: sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ==}
@@ -3576,7 +3574,6 @@ packages:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
     dependencies:
       react-is: 16.13.1
-    dev: false
 
   /hpack.js/2.1.6:
     resolution: {integrity: sha1-h3dMCUnlE/QuhFdbPEVoH63ioLI=}
@@ -5176,6 +5173,17 @@ packages:
       unpipe: 1.0.0
     dev: true
 
+  /react-auto-testid/1.2.1_74cdfb704b70bfbe5b519e0c4564d995:
+    resolution: {integrity: sha512-8gG1w6j+ZygCuUybY9L68wS9CM2ug1+9zYUa3xb9/7oJAQcNypQKwSMEb1+uYuxrkTzkZpU/DXkns9XsjV9HDQ==}
+    dependencies:
+      '@emotion/react': 11.5.0_74cdfb704b70bfbe5b519e0c4564d995
+      lodash: 4.17.21
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@types/react'
+      - react
+    dev: true
+
   /react-dom/17.0.2_react@17.0.2:
     resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
     peerDependencies:
@@ -5189,7 +5197,6 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-    dev: false
 
   /react-is/17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
