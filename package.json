@@ -1,7 +1,7 @@
 {
   "name": "react-auto-testid",
   "author": "reeli",
-  "version": "1.3.6",
+  "version": "1.3.7",
   "license": "MIT",
   "bugs": {
     "url": "git@github.com:reeli/react-auto-testid.git"
@@ -22,6 +22,7 @@
   "scripts": {
     "start": "webpack serve --config webpack.config.ts",
     "release": "rm -rf cmd babel-preset jsx-runtime && rollup --config rollup.config.ts",
+    "prepare": "pnpm run release",
     "testid": "testid",
     "test": "jest"
   },
