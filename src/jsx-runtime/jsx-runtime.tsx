@@ -1,4 +1,4 @@
-import React, { createContext, FC, useContext, ReactElement } from "react";
+import { createContext, FC, useContext, ReactElement, cloneElement, Fragment as ReactFragment } from "react";
 import { getConfig } from "../testid-config/config";
 
 const { runtime, testidKey, testidRoot } = getConfig();
@@ -34,13 +34,15 @@ const ConsumeTestid: FC<ConsumerProps> = ({ children, ...otherProps }) => {
 
     return (
       <TestidContext.Provider value={{ name: newName }}>
-        {React.cloneElement(children, propsToChildren)}
+        {cloneElement(children, propsToChildren)}
       </TestidContext.Provider>
     );
   }
 
-  return React.cloneElement(children, propsToChildren);
+  return cloneElement(children, propsToChildren);
 };
+
+export const Fragment = ReactFragment;
 
 export const jsx = (...args: Parameters<typeof runtime.jsx>) => {
   const [type, props, key] = args;
