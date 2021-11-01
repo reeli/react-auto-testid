@@ -48,11 +48,11 @@ export const Fragment = React.Fragment;
 export const jsx = (...args: Parameters<typeof runtime.jsx>) => {
   const [type, props, key] = args;
 
-  return runtime.jsx(ConsumeTestid, { ...props, children: runtime.jsx(type, props, key) });
+  return runtime.jsx(ConsumeTestid, { ...props, key, children: runtime.jsx(type, props, key) });
 };
 
 export const jsxs = (...args: Parameters<typeof runtime.jsxs>) => {
   const [type, props, key] = args;
 
-  return runtime.jsx(ConsumeTestid, { ...props, children: runtime.jsxs(type, props, key) });
+  return runtime.jsx(ConsumeTestid, { ...props, key, children: runtime.jsxs(type, props, key) });
 };
