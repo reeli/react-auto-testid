@@ -10,11 +10,19 @@ const presets = [
   ["@babel/preset-typescript"],
 ];
 
+const plugins = [];
+
 if (process.env.NODE_ENV === "test" || process.env.NODE_ENV !== "production") {
-  presets.push(["react-auto-testid/babel-preset"]);
+  plugins.push([
+    "@babel/plugin-transform-react-jsx",
+    {
+      runtime: "automatic",
+      importSource: "src/jsx-runtime",
+    },
+  ]);
 }
 
 module.exports = {
   presets,
-  plugins: ["@emotion/babel-plugin"],
+  plugins: [...plugins, "@emotion/babel-plugin"],
 };
