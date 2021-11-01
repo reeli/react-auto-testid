@@ -1,6 +1,6 @@
 # React Auto Testid
 
-[![Build Status](https://travis-ci.com/reeli/react-auto-testid.svg?branch=master&status=passed)](https://travis-ci.com/github/reeli/react-auto-testid)
+![Build Status](https://github.com/reeli/react-auto-testid/actions/workflows/deploy.yml/badge.svg)
 [![codecov](https://codecov.io/gh/reeli/react-auto-testid/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/reeli/react-auto-testid)
 [![License](https://img.shields.io/npm/l/react-auto-testid.svg?style=flat-square)](https://npmjs.org/package/react-auto-testid)
 
