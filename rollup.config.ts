@@ -1,12 +1,15 @@
 import { babel } from "@rollup/plugin-babel";
 // @ts-ignore
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
+import json from "@rollup/plugin-json";
+import path from "path";
+
+const pkg = require(path.join(__dirname, "package.json"));
 
 const common = {
-  external: ["react"],
+  external: [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.peerDependencies || {})],
   plugins: [
-    commonjs(),
+    json(),
     nodeResolve({
       extensions: [".ts", ".tsx", ".mjs", "", ".jsx"],
     }),
@@ -25,6 +28,7 @@ const common = {
         "@babel/preset-react",
       ],
       extensions: [".ts", ".tsx", ".mjs", "", ".jsx"],
+      exclude: "node_modules/**",
     }),
   ],
 };
@@ -42,6 +46,14 @@ module.exports = [
     input: ["src/babel-preset/index.ts"],
     output: {
       file: "babel-preset/index.js",
+      format: "cjs",
+    },
+    ...common,
+  },
+  {
+    input: ["src/testid-config/init.ts"],
+    output: {
+      file: "testid-config/init.js",
       format: "cjs",
     },
     ...common,

@@ -1,5 +1,5 @@
 import React, { createContext, FC, useContext, ReactElement } from "react";
-import { getConfig } from "../config";
+import { getConfig } from "../testid-config/config";
 
 const { runtime, testidKey, testidRoot } = getConfig();
 

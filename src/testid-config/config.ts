@@ -1,6 +1,7 @@
 import { FunctionComponent, ComponentClass, ProviderExoticComponent, ReactFragment, ReactElement } from "react";
-import * as EmotionReactJSXRuntime from "@emotion/react/jsx-runtime";
 import OriginReactJSXRuntime from "react/jsx-runtime";
+import * as EmotionReactJSXRuntime from "@emotion/react/jsx-runtime";
+import config from "react-auto-testid.config.json";
 
 type PropsObject<T> = {
   [key: string | number]: any;
@@ -25,7 +26,7 @@ interface Config {
   testidRoot: string;
 }
 
-interface Params {
+interface UserInput {
   runtime?: "emotion" | "react";
   testidRoot?: string;
   testidKey?: string;
@@ -34,7 +35,7 @@ interface Params {
 const DEFAULT_TESTID_ROOT = "testid-root";
 const DEFAULT_TESTID_KEY = "data-testid";
 
-export const createConfigByUserInput = ({ runtime, testidRoot, testidKey }: Params): Config => {
+export const createConfigByUserInput = ({ runtime, testidRoot, testidKey }: UserInput): Config => {
   return {
     runtime: runtime === "emotion" ? EmotionReactJSXRuntime : (OriginReactJSXRuntime as any),
     testidRoot: testidRoot || DEFAULT_TESTID_ROOT,
@@ -42,9 +43,4 @@ export const createConfigByUserInput = ({ runtime, testidRoot, testidKey }: Para
   };
 };
 
-export const getConfig = () =>
-  createConfigByUserInput({
-    runtime: "react",
-    testidRoot: "testid-root",
-    testidKey: "data-testid",
-  });
+export const getConfig = () => createConfigByUserInput(config as UserInput);
