@@ -1,7 +1,6 @@
 import { babel } from "@rollup/plugin-babel";
 // @ts-ignore
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import json from "@rollup/plugin-json";
 import path from "path";
 import commonjs from "@rollup/plugin-commonjs";
 
@@ -10,15 +9,10 @@ const pkg = require(path.join(__dirname, "package.json"));
 const common = {
   external: [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.peerDependencies || {})],
   plugins: [
-    json(),
     nodeResolve({
-      browser: true,
-      modulesOnly: true,
       extensions: [".ts", ".tsx", ".mjs", "", ".jsx"],
     }),
-    commonjs({
-      sourceMap: false,
-    }),
+    commonjs({ sourceMap: false }),
     babel({
       babelrc: false,
       presets: [
