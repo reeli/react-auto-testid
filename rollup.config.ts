@@ -1,10 +1,12 @@
 import { babel } from "@rollup/plugin-babel";
 // @ts-ignore
 import { nodeResolve } from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 
 const common = {
   external: ["react"],
   plugins: [
+    commonjs(),
     nodeResolve({
       extensions: [".ts", ".tsx", ".mjs", "", ".jsx"],
     }),
